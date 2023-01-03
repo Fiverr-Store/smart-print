@@ -1,64 +1,71 @@
-/*
-	Dopetrope by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+(function () {
+	window.onload = function () {
+		window.setTimeout(fadeout, 0);
+	};
+  function fadeout() {
+		document.querySelector(".page-loader").style.opacity = "0";
+		document.querySelector(".page-loader").style.display = "none";
+	}
+	window.onscroll = function () {
+		var header_navbar = document.querySelector(".navbar-area");
+		var sticky = header_navbar.offsetTop;
+		if (window.pageYOffset > sticky) {
+			header_navbar.classList.add("sticky");
+		} else {
+			header_navbar.classList.remove("sticky");
+		}
 
-(function($) {
+	};
 
-	var	$window = $(window),
-		$body = $('body');
-
-	// Breakpoints.
-		breakpoints({
-			xlarge:  [ '1281px',  '1680px' ],
-			large:   [ '981px',   '1280px' ],
-			medium:  [ '737px',   '980px'  ],
-			small:   [ null,      '736px'  ]
+	var pageLink = document.querySelectorAll(".page-scroll");
+	pageLink.forEach((elem) => {
+		elem.addEventListener("click", (e) => {
+			e.preventDefault();
+			document
+				.querySelector(elem.getAttribute("href"))
+				.scrollIntoView({ behavior: "smooth", offsetTop: 1 - 60 });
 		});
+	});
+	function onScroll(event) {
+		var sections = document.querySelectorAll(".page-scroll");
+		var scrollPos =
+			window.pageYOffset ||
+			document.documentElement.scrollTop ||
+			document.body.scrollTop;
+		for (var i = 0; i < sections.length; i++) {
+			var currLink = sections[i];
+			var val = currLink.getAttribute("href");
+			var refElement = document.querySelector(val);
+			var scrollTopMinus = scrollPos + 73;
+			if (
+				refElement.offsetTop <= scrollTopMinus &&
+				refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+			) {
+				document
+					.querySelector(".page-scroll")
+					.classList.remove("active");
+				currLink.classList.add("active");
+			} else {
+				currLink.classList.remove("active");
+			}
+		}
+	}
+	window.document.addEventListener("scroll", onScroll);
+	let navbarToggler = document.querySelector(".navbar-toggler");
+	var navbarCollapse = document.querySelector(".navbar-collapse");
+	document.querySelectorAll(".page-scroll").forEach((e) =>
+		e.addEventListener("click", () => {
+			navbarToggler.classList.remove("active");
+			navbarCollapse.classList.remove("show");
+		})
+	);
+	navbarToggler.addEventListener("click", function () {
+		navbarToggler.classList.toggle("active");
+	});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
 
-	// Dropdowns.
-		$('#nav > ul').dropotron({
-			mode: 'fade',
-			noOpenerFade: true,
-			alignment: 'center'
-		});
 
-	// Nav.
 
-		// Title Bar.
-			$(
-				'<div id="titleBar">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-				'</div>'
-			)
-				.appendTo($body);
 
-		// Panel.
-			$(
-				'<div id="navPanel">' +
-					'<nav>' +
-						$('#nav').navList() +
-					'</nav>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'navPanel-visible'
-				});
 
-})(jQuery);
+})();

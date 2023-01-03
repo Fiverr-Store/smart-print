@@ -5,7 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0 !important;
   /* background-color: #ffffff; */
-  background-color: rgb(58 57 58);
+ background-color: #181A20;
   background-repeat: no-repeat;
   background-attachment: fixed;
   /* background-size: cover; */
@@ -704,7 +704,7 @@ h4 {
 }
 
 .btn-default.active,
-.btn-default:active, 
+.btn-default:active,
 .open > .dropdown-toggle.btn-default {
   color: #B5A058; /* #354D5F; */
   background-color: transparent;
@@ -731,14 +731,14 @@ h4 {
   border-color: transparent;
 }
 
-.btn-default.active.focus, 
-.btn-default.active:focus, 
-.btn-default.active:hover, 
-.btn-default:active.focus, 
-.btn-default:active:focus, 
-.btn-default:active:hover, 
-.open > .dropdown-toggle.btn-default.focus, 
-.open > .dropdown-toggle.btn-default:focus, 
+.btn-default.active.focus,
+.btn-default.active:focus,
+.btn-default.active:hover,
+.btn-default:active.focus,
+.btn-default:active:focus,
+.btn-default:active:hover,
+.open > .dropdown-toggle.btn-default.focus,
+.open > .dropdown-toggle.btn-default:focus,
 .open > .dropdown-toggle.btn-default:hover {
   color: #B5A058; /* #354D5F; */
   background-color: transparent;
